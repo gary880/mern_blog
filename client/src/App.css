@@ -7,3 +7,6 @@
   flex-direction: column;
 
 }
+.ql-editor{
+  min-height: 200px;
+}

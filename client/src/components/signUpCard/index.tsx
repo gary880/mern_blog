@@ -11,46 +11,48 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { useRef } from "react"
 import { useNavigate } from "react-router-dom"
-import { useDispatch } from "react-redux"
-import { signinUser } from "@/app/slices/userSlice"
-import { AppDispatch } from "@/app/store"
+import { signup } from "@/services/user"
 
-export function LoginCard() {
+export function SignUpCard() {
 
     const navigate = useNavigate()
-    const dispatch = useDispatch<AppDispatch>()
 
-    const handleLogin = async () => {
-        if (!emailRef.current?.value || !passwordRef.current?.value) return
-
-        let userCredentials = {
-            email: emailRef.current?.value,
-            password: passwordRef.current?.value
-        }
-
-        dispatch(signinUser(userCredentials))
-            .then(() => {
-                navigate('/')
-            })
-
-    }
 
     const emailRef = useRef<HTMLInputElement>(null)
     const passwordRef = useRef<HTMLInputElement>(null)
+    const usernameRef = useRef<HTMLInputElement>(null)
+
+    const handleSingUp = async () => {
+        const email = emailRef.current?.value
+        const password = passwordRef.current?.value
+        const username = usernameRef.current?.value
+        if (!email || !password || !username) return
+        try {
+            await signup(email, username, password, password)
+            navigate('/')
+        } catch (error) {
+            console.error(error)
+        }
+    }
 
 
     return (
         <Card className="w-[350px]">
             <CardHeader>
-                <CardTitle>Login</CardTitle>
-                <CardDescription>Enter your email and password to login</CardDescription>
+                <CardTitle>Sign Up</CardTitle>
+                <CardDescription>Enter your email, username and password to sign up</CardDescription>
             </CardHeader>
             <CardContent>
                 <form>
                     <div className="grid w-full items-center gap-4">
+
                         <div className="flex flex-col space-y-1.5">
                             <Label htmlFor="email">Email</Label>
                             <Input id="email" placeholder="email" ref={emailRef} />
+                        </div>
+                        <div className="flex flex-col space-y-1.5">
+                            <Label htmlFor="usermane">Username</Label>
+                            <Input id="username" placeholder="username" ref={usernameRef} />
                         </div>
                         <div className="flex flex-col space-y-1.5">
                             <Label htmlFor="password">Password</Label>
@@ -61,7 +63,7 @@ export function LoginCard() {
             </CardContent>
             <CardFooter className="flex justify-between">
                 {/* <Button onClick={handleRegister}>Sign up</Button> */}
-                <Button className="w-full" onClick={handleLogin} >Login</Button>
+                <Button className="w-full" onClick={handleSingUp} >Sign up</Button>
             </CardFooter>
         </Card>
     )

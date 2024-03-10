@@ -2,16 +2,10 @@
 import './App.css'
 import type { LoaderFunctionArgs } from "react-router-dom";
 import {
-  Form,
   Outlet,
   RouterProvider,
   createBrowserRouter,
   redirect,
-  useActionData,
-  useFetcher,
-  useLocation,
-  useNavigation,
-  useRouteLoaderData,
 } from "react-router-dom";
 import { fakeAuthProvider } from "./auth";
 import Navbar from './components/nav';
@@ -20,6 +14,7 @@ import ErrorPage from './pages/error-page';
 import { Profile } from './pages/profile';
 import Posts from './pages/posts';
 import PostPage from './pages/post-page';
+import Editor from './pages/editor';
 
 const router = createBrowserRouter([
   {
@@ -42,6 +37,10 @@ const router = createBrowserRouter([
       {
         path: `post/:id`,
         Component: PostPage,
+      },
+      {
+        path: "editor",
+        Component: Editor,
       },
       {
         path: "login",
@@ -68,7 +67,7 @@ const router = createBrowserRouter([
 
 
 function App() {
-  return (<RouterProvider router={router}/>);
+  return (<RouterProvider router={router} />);
 }
 
 
@@ -76,33 +75,11 @@ function Layout() {
   return (
     <>
       <Navbar />
-      <AuthStatus />
       <Outlet />
     </>
   );
 }
 
-function AuthStatus() {
-  let { user } = useRouteLoaderData("root") as { user: string | null };
-  let fetcher = useFetcher();
-
-  if (!user) {
-    return <></>
-  }
-
-  let isLoggingOut = fetcher.formData != null;
-
-  return (
-    <div>
-      <p>Welcome {user}!</p>
-      <fetcher.Form method="post" action="/logout">
-        <button type="submit" disabled={isLoggingOut}>
-          {isLoggingOut ? "Signing out..." : "Sign out"}
-        </button>
-      </fetcher.Form>
-    </div>
-  );
-}
 
 async function loginAction({ request }: LoaderFunctionArgs) {
   let formData = await request.formData();

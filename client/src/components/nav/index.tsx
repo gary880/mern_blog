@@ -1,12 +1,22 @@
-import { LogIn, Linkedin, User, LogOut } from "lucide-react";
+import { LogIn, Linkedin, User, LogOut, Edit } from "lucide-react";
 import { Button } from "../ui/button";
 import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { RootState } from "@/app/store";
+import { signoutUser } from "@/app/slices/userSlice";
+import { AppDispatch } from "@/app/store";
 
 const Navbar = () => {
     const navigate = useNavigate();
-
+    const userAuth = useSelector((state: RootState) => state.user);
+    const dispatch = useDispatch<AppDispatch>()
     const navigateTo = (path: string) => {
         navigate(path);
+    }
+
+    const handleLogout = () => {
+        dispatch(signoutUser());
+        navigateTo("/");
     }
 
 
@@ -24,14 +34,19 @@ const Navbar = () => {
                 <Button className="p-2 rounded-full w-8 h-8" onClick={() => navigateTo("/profile")} >
                     <User />
                 </Button>
+                {userAuth.user && <Button className="p-2 rounded-full w-8 h-8" onClick={() => navigateTo("/editor")} >
+                    <Edit />
+                </Button>}
+                {userAuth.user ?
+                    <Button className="p-2 rounded-full w-8 h-8" onClick={handleLogout}>
+                        <LogOut />
+                    </Button>
+                    :
+                    <Button className="p-2 rounded-full w-8 h-8" onClick={() => navigateTo("/login")}>
+                        <LogIn />
+                    </Button>
+                }
 
-                <Button className="p-2 rounded-full w-8 h-8" onClick={() => navigateTo("/logout")}>
-                    <LogOut />
-                </Button>
-
-                <Button className="p-2 rounded-full w-8 h-8" onClick={() => navigateTo("/login")}>
-                    <LogIn />
-                </Button>
 
 
             </div>
