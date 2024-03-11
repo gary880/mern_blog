@@ -11,16 +11,8 @@ COPY ./yarn.lock ./
 RUN yarn install
 
 COPY . .
-EXPOSE 3000
+EXPOSE 8080
 
 # Build the application
 RUN yarn build
-
-
-# Stage 2
-FROM nginx:1.17.0-alpine
-
-COPY --from=build-stage /app/build /usr/share/nginx/html
-EXPOSE 80
-
-CMD nginx -g 'daemon off;'
+CMD ["yarn", "dev"]
