@@ -8,7 +8,7 @@ WORKDIR /app
 COPY package.json .
 COPY ./yarn.lock ./
 
-RUN yarn install
+RUN yarn install --ignore-engines
 
 COPY . .
 EXPOSE 8080
