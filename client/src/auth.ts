@@ -1,24 +1,24 @@
+// set auth with redux user slice
+
+// Path: src/auth.ts
+// Compare this snippet from src/components/post/index.tsx:
+import { useSelector } from "react-redux";
+import { RootState } from "@/app/store";
+
 interface AuthProvider {
     isAuthenticated: boolean;
-    username: null | string;
-    signin(username: string): Promise<void>;
-    signout(): Promise<void>;
+    isAuthed: () => boolean;
   }
-  
-  /**
-   * This represents some generic auth provider API, like Firebase.
-   */
-  export const fakeAuthProvider: AuthProvider = {
+
+const AuthProvider = {
     isAuthenticated: false,
-    username: null,
-    async signin(username: string) {
-      await new Promise((r) => setTimeout(r, 500)); // fake delay
-      fakeAuthProvider.isAuthenticated = true;
-      fakeAuthProvider.username = username;
-    },
-    async signout() {
-      await new Promise((r) => setTimeout(r, 500)); // fake delay
-      fakeAuthProvider.isAuthenticated = false;
-      fakeAuthProvider.username = "";
+    isAuthed: () => {
+      const userAuth = useSelector((state: RootState) => state.user);
+      if (userAuth.user) {
+        AuthProvider.isAuthenticated = true;
+        return true;
+      }
     },
   };
+  
+  export { AuthProvider };

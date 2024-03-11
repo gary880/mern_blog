@@ -1,8 +1,6 @@
 import axios from "axios";
-
-// set axios header with token
-
-const BaseUrl = "http://localhost:5000/post/";
+const BaseUrl = `${import.meta.env.VITE_BASE_URL}/posts`;
+const token = JSON.parse(localStorage.getItem("user") as string)?.token;
 
 
 const getPosts = async () => {
@@ -11,28 +9,52 @@ const getPosts = async () => {
 }
 
 
-const createPost = async (data : CreatePost) => {
-    const response = await axios.post(BaseUrl, data);
+const createPost = async (data: CreatePost) => {
+    // set token to header
+    const response = await axios.post(BaseUrl, data, { headers: { Authorization: `Bearer ${token}` } });
     return response;
-
 }
 
 const getPost = async (id: string) => {
-    const response = await axios.get(BaseUrl + id);
+    const response = await axios.get(`${BaseUrl}/${id}`);
     return response;
 }
 
 const updatePost = async (id: string, data: CreatePost) => {
-    const response = await axios.put(BaseUrl + id, data);
+    const response = await axios.post(`${BaseUrl}/updatePost/${id}`, data, { headers: { Authorization: `Bearer ${token}` } });
+    return response;
+}
+
+
+const deletePost = async (id: string) => {
+    const response = await axios.post(`${BaseUrl}/delete`, { id: id }, { headers: { Authorization: `Bearer ${token}` } });
     return response;
 }
 
 
 
-interface CreatePost {
+export interface CreatePost {
     title: string;
     summary: string;
     content: string;
-    tags: [string];
+    tags: string[];
     image: string;
+}
+
+export interface PostInterface {
+    title: string;
+    summary: string;
+    content: string;
+    tags: string[];
+    image: string;
+    createdAt: string;
+    _id: string;
+}
+
+export {
+    getPosts,
+    createPost,
+    getPost,
+    updatePost,
+    deletePost
 }

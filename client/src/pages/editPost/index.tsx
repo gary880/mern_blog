@@ -1,38 +1,57 @@
-import { useState, useRef } from "react";
+
+
+import { useState, useRef, useEffect } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { createPost } from "@/services/post";
+import { updatePost } from "@/services/post";
+import { useNavigate, useParams } from "react-router-dom";
+import { getPost } from "@/services/post";
 import { stringToArray } from "@/services/functions/stringToArray";
-import { useNavigate } from "react-router-dom";
 
-export default function Editor() {
+export default function EditPost() {
     const tagsRef = useRef<HTMLInputElement>(null);
     const titleRef = useRef<HTMLInputElement>(null);
     const summaryRef = useRef<HTMLInputElement>(null);
     const coverImageRef = useRef<HTMLInputElement>(null);
     const [code, setCode] = useState("");
+    const { id } = useParams();
     const navigate = useNavigate();
 
     const handleProcedureContentChange = (content: any) => {
         setCode(content);
     };
-    
+
     const handleSubmit = async () => {
-        await createPost({
+        if (!id) return;
+        await updatePost(id, {
             title: titleRef.current?.value as string,
             summary: summaryRef.current?.value as string,
             content: code,
             tags: stringToArray(tagsRef.current?.value as string),
             image: coverImageRef.current?.value as string,
         }).then((response) => {
-            if (response.status === 201) {
+            if (response.status === 200) {
                 navigate("/");
             }
         })
-
     }
+
+    useEffect(() => {
+        if (!id) return;
+        const fetchPost = async () => {
+            const response = await getPost(id);
+            setCode(response.data.content);
+            if (titleRef.current) titleRef.current.value = response.data.title;
+            if (summaryRef.current) summaryRef.current.value = response.data.summary;
+            if (coverImageRef.current) coverImageRef.current.value = response.data.image;
+            if (tagsRef.current) tagsRef.current.value = response.data.tags.join(",");
+        }
+        fetchPost();
+    }, [])
+
+
 
     const myColors = [
         "purple",

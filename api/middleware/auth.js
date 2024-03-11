@@ -10,17 +10,16 @@ const auth = async (req, res, next) => {
 
         if (token && isCustomAuth) {
             decodedData = jwt.verify(token, 'test');
-
             req.userId = decodedData?.id;
         } else {
             decodedData = jwt.decode(token);
-
             req.userId = decodedData?.sub;
         }
 
         next();
     } catch (error) {
-
+        res.status(401).json({ message: "Unauthorized" });
+        console.log(req.headers.authorization.split(" ")[1]);
     }
 
 

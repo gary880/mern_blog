@@ -1,5 +1,5 @@
-import Post from "../models/posts";
-
+import Post from "../models/posts.js";
+import mongoose from "mongoose";
 
 export const getPosts = async (req, res) => {
     try {
@@ -30,4 +30,28 @@ export const updatePost = async (req, res) => {
     if (!mongoose.Types.ObjectId.isValid(_id)) return res.status(404).send('No post with that id');
     const updatedPost = await Post.findByIdAndUpdate(_id, { ...post, _id }, { new: true });
     res.json(updatedPost);
+}
+
+
+export const getPost = async (req, res) => {
+    const { id: _id } = req.params;
+    if (!mongoose.Types.ObjectId.isValid(_id)) return res.status(404).send('No post with that id');
+    const post = await Post.findById(_id);
+    res.json(post);
+}
+
+
+export const deletePost = async (req, res) => {
+    const { id: _id } = req.body;
+    console.log(`${_id} deleted`);
+    if (!mongoose.Types.ObjectId.isValid(_id)) return res.status(404).send('No post with that id');
+    const post = await Post.findByIdAndDelete(_id);
+    res.status(200).json({ message: "Post deleted" });
+}
+
+export const getPostsByTag = async (req, res) => {
+    // find posts with the same tag in tag array
+    const { tag } = req.params;
+    const posts = await Post.find({ tags: tag });
+    res.json(posts);
 }

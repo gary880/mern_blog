@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "@/app/store";
 import { signoutUser } from "@/app/slices/userSlice";
 import { AppDispatch } from "@/app/store";
+import imageUrl from "../../assets/image.png"
 
 const Navbar = () => {
     const navigate = useNavigate();
@@ -22,7 +23,8 @@ const Navbar = () => {
 
     return (
         <nav className="mb-3">
-            <div className="w-full flex justify-center p-4 ">
+            <div className="w-full flex justify-center p-4">
+                <img  src={imageUrl} className=" object-contain h-8 mr-3" alt="profile" />
                 <a className="text-2xl font-serif font-bold cursor-pointer" onClick={() => navigateTo("/")} >Dylan<span className=" text-2xl text-green-800">Blog</span></a>
             </div>
             <div className="w-full flex  justify-end gap-2 px-2">
