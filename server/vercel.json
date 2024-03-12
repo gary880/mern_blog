@@ -22,12 +22,6 @@
           "headers": [
             { "key": "Access-Control-Allow-Origin", "value": "*" }
           ]
-        },
-        {
-          "source": "/mern-blog-smoky-chi.vercel.app/(.*)",
-          "headers": [
-            { "key": "Access-Control-Allow-Origin", "value": "*" }
-          ]
-        }  
+        }
     ]
 }
