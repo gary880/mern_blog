@@ -15,11 +15,5 @@ EXPOSE 8080
 
 # Build the application
 RUN yarn build
+
 CMD ["yarn", "dev"]
-
-FROM nginx:1.17.0-alpine
-
-COPY --from=build-stage /client/build /usr/share/nginx/html
-EXPOSE 8080
-
-CMD nginx -g 'daemon off;'
