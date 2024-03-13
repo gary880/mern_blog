@@ -75,12 +75,12 @@ const Post = (props: PostProps) => {
                     </div>
 
                     <h2 className=" font-bold text-2xl">{title}</h2>
-                    <time className=" text-gray-400">{convertDate(date)}</time>
+                    <time className=" text-gray-500">{convertDate(date)}</time>
                     <h3 className="font-blod"><strong>{summary}</strong></h3>
 
                     <div className="flex justify-end">
                         {props?.tags?.map((tag, index) => (
-                            <span key={index} className=" bg-gray-400 text-gray-100 text-xs p-1 mx-1 rounded-sm" >{tag}</span>
+                            <span key={index} className=" bg-black text-gray-100 text-xs p-1 mx-1 rounded-sm" >{tag}</span>
                         ))}
                     </div>
                     {userAuth.user &&

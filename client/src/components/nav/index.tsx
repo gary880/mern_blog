@@ -26,15 +26,15 @@ const Navbar = () => {
             <div className="w-full flex justify-center p-4">
                 <img  src={imageUrl} className=" object-contain h-8 mr-3" alt="profile" />
                 <h1 className="w-0 overflow-hidden">Dylan BLog</h1>
-                <a className="text-2xl font-serif font-bold cursor-pointer" onClick={() => navigateTo("/")} >Dylan<span className=" text-2xl text-green-800">Blog</span></a>
+                <h2 className="text-2xl font-serif font-bold cursor-pointer disabled" onClick={() => navigateTo("/")} >Dylan<span className=" text-2xl text-green-800">Blog</span></h2>
             </div>
             <div className="w-full flex  justify-end gap-2 px-2">
                 <a href="https://www.linkedin.com/in/dylan-chen-92366b1b0/" target="_blank">
-                    <Button className="p-2 rounded-full w-8 h-8">
+                    <Button className="p-2 rounded-full w-8 h-8" id="buttonLinkedin" aria-label="Linkedin">
                         <Linkedin />
                     </Button>
                 </a>
-                <Button className="p-2 rounded-full w-8 h-8" onClick={() => navigateTo("/profile")} >
+                <Button className="p-2 rounded-full w-8 h-8" id="buttonProfile" aria-label="profile" onClick={() => navigateTo("/profile")} >
                     <User />
                 </Button>
                 {userAuth.user && <Button className="p-2 rounded-full w-8 h-8" onClick={() => navigateTo("/editor")} >
@@ -45,7 +45,7 @@ const Navbar = () => {
                         <LogOut />
                     </Button>
                     :
-                    <Button className="p-2 rounded-full w-8 h-8" onClick={() => navigateTo("/login")}>
+                    <Button className="p-2 rounded-full w-8 h-8" id="buttonLogin" aria-label="login" onClick={() => navigateTo("/login")}>
                         <LogIn />
                     </Button>
                 }
