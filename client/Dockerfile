@@ -11,8 +11,8 @@ COPY ./yarn.lock ./
 RUN yarn install --ignore-engines
 
 COPY . .
-EXPOSE 8080
 
 # Build the application
 RUN yarn build
-CMD ["yarn", "dev"]
+EXPOSE 8080
+CMD ["yarn", "preview"]
