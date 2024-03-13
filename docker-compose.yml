@@ -7,7 +7,7 @@ services:
     build:
       context: ./server
       dockerfile: Dockerfile
-      
+
     container_name: backend
     ports:
       - "5000:5000"
@@ -16,6 +16,9 @@ services:
       - DB_USER=$MONGODB_USER
       - DB_PASSWORD=$MONGODB_PASSWORD
       - DB_LINK=$MONGODB_LINK
+    networks:
+      - backend
+      - frontend
 
   # Client service
   client:
@@ -28,7 +31,9 @@ services:
       - "8080:8080"
     depends_on:
       - server
+    networks:
+      - frontend
 
-volumes: 
-  mern_app_data:
-    driver: local
+networks:
+  frontend:
+  backend:

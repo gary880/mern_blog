@@ -14,5 +14,7 @@ COPY . .
 
 # Build the application
 RUN yarn build
+
 EXPOSE 8080
+
 CMD ["yarn", "preview"]
