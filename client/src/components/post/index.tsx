@@ -24,7 +24,7 @@ interface PostProps {
     image: string;
     tags?: string[];
     id: string;
-    fetchPosts: Function;
+    fetchPosts: () => void;
 }
 
 
@@ -74,9 +74,9 @@ const Post = (props: PostProps) => {
                         <img src={image} alt="placeholder" className="object-cover w-full max-h-52 duration-1000 hover:scale-110" loading="lazy" />
                     </div>
 
-                    <h3 className=" font-bold text-2xl">{title}</h3>
+                    <h2 className=" font-bold text-2xl">{title}</h2>
                     <time className=" text-gray-400">{convertDate(date)}</time>
-                    <span>{summary}</span>
+                    <h3 className="font-blod"><strong>{summary}</strong></h3>
 
                     <div className="flex justify-end">
                         {props?.tags?.map((tag, index) => (

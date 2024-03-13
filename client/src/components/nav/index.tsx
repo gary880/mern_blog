@@ -25,6 +25,7 @@ const Navbar = () => {
         <nav className="mb-3">
             <div className="w-full flex justify-center p-4">
                 <img  src={imageUrl} className=" object-contain h-8 mr-3" alt="profile" />
+                <h1 className="w-0 overflow-hidden">Dylan BLog</h1>
                 <a className="text-2xl font-serif font-bold cursor-pointer" onClick={() => navigateTo("/")} >Dylan<span className=" text-2xl text-green-800">Blog</span></a>
             </div>
             <div className="w-full flex  justify-end gap-2 px-2">

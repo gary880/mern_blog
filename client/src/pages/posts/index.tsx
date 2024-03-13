@@ -5,7 +5,7 @@ import { PostInterface } from "@/services/post";
 
 const Posts = () => {
 
-    const [posts, setPosts] = useState([]) as [PostInterface[], Function];
+    const [posts, setPosts] = useState<PostInterface[]>([]);
 
     const fetchPosts = async () => {
         const response = await getPosts();
