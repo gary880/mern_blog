@@ -2,8 +2,6 @@
 
 // Path: src/auth.ts
 // Compare this snippet from src/components/post/index.tsx:
-import { useSelector } from "react-redux";
-import { RootState } from "@/app/store";
 
 interface AuthProvider {
     isAuthenticated: boolean;
@@ -13,7 +11,7 @@ interface AuthProvider {
 const AuthProvider = {
     isAuthenticated: false,
     isAuthed: () => {
-      const userAuth = useSelector((state: RootState) => state.user);
+      const userAuth = JSON.parse(localStorage.getItem("user") || "{}");
       if (userAuth.user) {
         AuthProvider.isAuthenticated = true;
         return true;

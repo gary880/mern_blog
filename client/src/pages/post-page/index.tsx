@@ -17,19 +17,19 @@ const PostPage = () => {
             setPost(response.data);
         }
         fetchPost();
-    }, [])
+    }, [id])
     return (
         <>
             <div>
                 <AsyncImage src={post.image} alt="cover image" className=" object-cover w-full mb-4 h-52 md:h-80" />
-                <div className="flex justify-end">
+            
+                <h2 className=" font-bold text-2xl mb-3">{post.title}</h2>
+                <div className="flex mb-2 ">
                     {post?.tags?.map((tag, index) => (
-                        <span key={index} className=" bg-gray-400 text-gray-100 text-xs p-1 mx-1 rounded-sm" >{tag}</span>
+                        <span key={index} className=" bg-black text-gray-100 text-xs p-1 mr-1 rounded-sm" >{tag}</span>
                     ))}
                 </div>
-
-                <h2 className=" font-bold text-2xl">{post.title}</h2>
-                <time className=" text-gray-400">{convertDate(post.createdAt)}</time>
+                <time className=" text-gray-400">{convertDate(post?.createdAt)}</time>
 
 
 

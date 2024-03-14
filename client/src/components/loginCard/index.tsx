@@ -23,7 +23,7 @@ export function LoginCard() {
     const handleLogin = async () => {
         if (!emailRef.current?.value || !passwordRef.current?.value) return
 
-        let userCredentials = {
+        const userCredentials = {
             email: emailRef.current?.value,
             password: passwordRef.current?.value
         }

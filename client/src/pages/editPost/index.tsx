@@ -19,7 +19,7 @@ export default function EditPost() {
     const { id } = useParams();
     const navigate = useNavigate();
 
-    const handleProcedureContentChange = (content: any) => {
+    const handleProcedureContentChange = (content: string) => {
         setCode(content);
     };
 
@@ -49,7 +49,7 @@ export default function EditPost() {
             if (tagsRef.current) tagsRef.current.value = response.data.tags.join(",");
         }
         fetchPost();
-    }, [])
+    }, [id])
 
 
 
@@ -111,7 +111,7 @@ export default function EditPost() {
             />
             <Input className="mt-4" placeholder="tags" ref={tagsRef} />
 
-            <Button className="mt-4" onClick={handleSubmit} >Submit</Button>
+            <Button className="my-4" onClick={handleSubmit} >Submit</Button>
         </>
     );
 }
