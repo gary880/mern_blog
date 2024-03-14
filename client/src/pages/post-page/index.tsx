@@ -4,7 +4,7 @@ import { getPost } from "@/services/post";
 import { PostInterface } from "@/services/post";
 import ReactQuill from "react-quill";
 import { convertDate } from "@/services/functions/dateFromating";
-
+import { AsyncImage } from "loadable-image";
 
 const PostPage = () => {
     const [post, setPost] = useState<PostInterface>({} as PostInterface);
@@ -21,7 +21,7 @@ const PostPage = () => {
     return (
         <>
             <div>
-                <img src={post.image} alt="cover image" className=" object-cover w-full mb-4 max-h-52 md:max-h-80"/>
+                <AsyncImage src={post.image} alt="cover image" className=" object-cover w-full mb-4 h-52 md:h-80" />
                 <div className="flex justify-end">
                     {post?.tags?.map((tag, index) => (
                         <span key={index} className=" bg-gray-400 text-gray-100 text-xs p-1 mx-1 rounded-sm" >{tag}</span>
