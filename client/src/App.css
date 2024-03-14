@@ -10,6 +10,8 @@
 
 .ql-editor {
   min-height: 200px;
+  scrollbar-width: none;
+  overflow: hidden;
 
   h1 {
     font-size: 2rem;
@@ -30,6 +32,7 @@
     background-color: #23241f;
     color: #f8f8f2;
     border-radius: 4px;
+    padding: 1rem !important;
   }
 
   code {

@@ -31,12 +31,15 @@ const PostPage = () => {
                 <h2 className=" font-bold text-2xl">{post.title}</h2>
                 <time className=" text-gray-400">{convertDate(post.createdAt)}</time>
 
+
+
                 <ReactQuill
                     value={post.content}
                     readOnly={true}
                     theme="bubble"
                 />
             </div>
+
         </>
     );
 };
