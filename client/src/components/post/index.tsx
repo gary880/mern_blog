@@ -70,7 +70,7 @@ const Post = (props: PostProps) => {
                 </DialogContent>
 
 
-                <div className="flex flex-col w-full p-4 lg:w-1/2">
+                <div className="flex flex-col w-full justify-between p-4 lg:w-1/2">
                     <div className="overflow-hidden w-full mb-2 rounded-2xl cursor-pointer" onClick={handleNavigate}>
                         <AsyncImage src={image} alt="placeholder" className="object-cover w-full h-52 duration-1000 hover:scale-110" />
                     </div>

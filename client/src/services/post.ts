@@ -1,7 +1,7 @@
 import axios from "axios";
 import { store } from "@/app/store";
 const BaseUrl = `${import.meta.env.VITE_BASE_URL}/posts`;
-const token = store.getState().user.user.token;
+const token = store.getState()?.user?.user?.token || "";
 
 
 const getPosts = async () => {
@@ -12,7 +12,6 @@ const getPosts = async () => {
 
 const createPost = async (data: CreatePost) => {
     // set token to header
-    console.log(token)
     const response = await axios.post(BaseUrl, data, { headers: { Authorization: `Bearer ${token}` } });
     return response;
 }
