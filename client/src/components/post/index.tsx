@@ -76,14 +76,15 @@ const Post = (props: PostProps) => {
                     </div>
 
                     <h2 className=" font-bold text-2xl">{title}</h2>
+                    <div className="flex mt-2">
+                        {props?.tags?.map((tag, index) => (
+                            <span key={index} className=" bg-black text-gray-100 text-xs p-1 mr-1 rounded-sm" >{tag}</span>
+                        ))}
+                    </div>
                     <time className=" text-gray-500">{convertDate(date)}</time>
                     <h3 className="font-blod"><strong>{summary}</strong></h3>
 
-                    <div className="flex justify-end">
-                        {props?.tags?.map((tag, index) => (
-                            <span key={index} className=" bg-black text-gray-100 text-xs p-1 mx-1 rounded-sm" >{tag}</span>
-                        ))}
-                    </div>
+                   
                     {userAuth.user &&
                         <div className="flex">
                             <DialogTrigger className="rounded-md w-8 h-8 text-white flex justify-center items-center p-1.5 bg-black mr-1">
