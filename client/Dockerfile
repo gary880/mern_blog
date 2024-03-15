@@ -1,5 +1,5 @@
 # Stage-1 & specify a name 'builder'
-FROM  node:latest AS builder
+FROM node as builder
 
 # Create a directory  and go to the directory 
 WORKDIR /app
