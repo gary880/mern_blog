@@ -38,3 +38,31 @@
     border-color: orange;
   }
 }
+.wrapper {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+
+  justify-content: center;
+}
+
+.container {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(1, minmax(200px, 1fr));
+  grid-gap: 12px;
+  padding: 12px;
+  background: white;
+  border-radius: 5px;
+  cursor: pointer;
+  will-change: width, height;
+}
+
+.item {
+  width: 100%;
+  height: 100px;
+  background: white;
+  border-radius: 5px;
+  will-change: transform, opacity;
+}
