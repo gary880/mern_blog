@@ -1,5 +1,5 @@
 # Stage-1 & specify a name 'builder'
-FROM node as builder
+FROM  node:latest AS builder
 
 # Create a directory  and go to the directory 
 WORKDIR /app
@@ -8,7 +8,7 @@ WORKDIR /app
 COPY package.json .
 COPY ./yarn.lock ./
 
-RUN yarn install
+RUN yarn install --ignore-engines
 
 COPY . .
 
