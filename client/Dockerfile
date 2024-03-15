@@ -8,7 +8,7 @@ WORKDIR /app
 COPY package.json .
 COPY ./yarn.lock ./
 
-RUN yarn install --ignore-engines
+RUN yarn install
 
 COPY . .
 
