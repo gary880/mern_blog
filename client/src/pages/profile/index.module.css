@@ -1,17 +1,15 @@
 .typewriter {
   text-align: center;
   overflow: hidden;
-
-  /* Ensures the content is not revealed until the animation */
-  /* The typwriter cursor */
   white-space: nowrap;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
   /* Keeps the content on a single line */
   margin: 0 auto;
-  /* Gives that scrolling effect as the typing happens */
+  font-weight: bolder;
   letter-spacing: .15em;
-  /* Adjust as needed */
+  font-size: 1rem;
   animation:
-    typing 3.5s steps(40, end),
+    typing 3s steps(40, end),
     blink-caret .75s step-end infinite;
 }
 
@@ -26,15 +24,43 @@
   }
 }
 
-/* The typewriter cursor effect */
-@keyframes blink-caret {
 
-  from,
-  to {
-    border-color: transparent
-  }
+.wrapper {
+  width: 100%;
+  height: 100%;
 
-  50% {
-    border-color: orange;
+  display: flex;
+
+  justify-content: center;
+}
+
+.container {
+  position: relative;
+  display: grid;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  grid-template-columns: repeat(1, minmax(200px, 1fr));
+  grid-gap: 12px;
+  padding: 12px;
+  background: white;
+  border-radius: 5px;
+  cursor: pointer;
+  
+  will-change: width, height;
+}
+
+.item {
+  width: 100%;
+  height: 100px;
+  background: white;
+  border-radius: 8px;
+  padding : 12px;
+  will-change: transform, opacity;
+  border: 3px solid #000;
+}
+
+
+@media screen and (min-width: 768px) {
+  .typewriter{
+    font-size: 1.8rem;
   }
 }
