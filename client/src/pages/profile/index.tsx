@@ -11,6 +11,7 @@ import JestSvg from "../../assets/jest.svg"
 import GitSvg from "../../assets/git.svg"
 import TypescriptSvg from "../../assets/typescript.svg"
 import NginxSvg from "../../assets/nginx.svg"
+import ClickSvg from "../../assets/click.svg"
 import { useState } from 'react'
 import {
     useTransition,
@@ -76,9 +77,7 @@ const Profile = () => {
                 </div>
             </div>
 
-
             <div className={styles.wrapper}>
-
                 <animated.div
                     style={{ ...rest, width: "100%", height: size }}
                     className={styles.container}
@@ -88,6 +87,7 @@ const Profile = () => {
                         <img src={CanSvg} alt="can" className=" h-12 w-12" />
                         <span className="font-bold" >DO</span>
                     </div>
+                    {!open && <img src={ClickSvg} alt="click" className="h-8 w-8 absolute right-2 top-4 animate-bounce" />}
                     {transition((style, item) => (
                         <animated.div
                             className={styles.item}
@@ -113,7 +113,21 @@ const Profile = () => {
 
                 </animated.div>
             </div>
+            <div>
+                <div className=" absolute bottom-0 p-4 left-1/2 -translate-x-1/2 bg-gray-200 w-full">
+                    <h2 className="text-2xl font-serif font-bold text-center">Contact Me</h2>
+                    <div className="flex justify-center gap-4">
+                        <a href="https://www.linkedin.com/in/dylan-chen-92366b1b0/" target="_blank">
+                            <img src="https://img.icons8.com/ios/50/000000/linkedin.png" alt="linkedin" />
+                        </a>
+                        <a href="mailto:easycard32145@gmail.com">
+                            <img src="https://img.icons8.com/ios/50/000000/gmail.png" alt="gmail" />
+                        </a>
+                    </div>
 
+                </div>
+
+            </div>
 
         </>
     )

@@ -40,11 +40,10 @@
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   grid-template-columns: repeat(1, minmax(200px, 1fr));
   grid-gap: 12px;
-  padding: 12px;
   background: white;
   border-radius: 5px;
   cursor: pointer;
-  
+
   will-change: width, height;
 }
 
