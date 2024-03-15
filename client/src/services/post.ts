@@ -1,7 +1,7 @@
 import axios from "axios";
 import { store } from "@/app/store";
 const BaseUrl = `${import.meta.env.VITE_BASE_URL}/posts`;
-const token = store.getState()?.user?.user?.token || "";
+
 
 
 const getPosts = async () => {
@@ -12,6 +12,7 @@ const getPosts = async () => {
 
 const createPost = async (data: CreatePost) => {
     // set token to header
+    const token = store.getState()?.user?.user?.token;
     const response = await axios.post(BaseUrl, data, { headers: { Authorization: `Bearer ${token}` } });
     return response;
 }
@@ -22,12 +23,14 @@ const getPost = async (id: string) => {
 }
 
 const updatePost = async (id: string, data: CreatePost) => {
+    const token = store.getState()?.user?.user?.token;
     const response = await axios.post(`${BaseUrl}/updatePost/${id}`, data, { headers: { Authorization: `Bearer ${token}` } });
     return response;
 }
 
 
 const deletePost = async (id: string) => {
+    const token = store.getState()?.user?.user?.token;
     const response = await axios.post(`${BaseUrl}/delete`, { id: id }, { headers: { Authorization: `Bearer ${token}` } });
     return response;
 }

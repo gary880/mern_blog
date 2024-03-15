@@ -6,9 +6,6 @@ export const signinUser = createAsyncThunk(
     'user/signinUser',
     async (userCredential: { email: string, password: string }) => {
         const response = await signin(userCredential.email, userCredential.password);
-        if (response){
-            localStorage.setItem('user', JSON.stringify(response));
-        }
         return response;
     }
 )

@@ -8,6 +8,7 @@ export const signin = async (email: string, password: string) => {
         email,
         password
     });
+    localStorage.setItem('user', JSON.stringify(response.data));
     return response.data;
 };
 
