@@ -9,7 +9,15 @@ export const store = configureStore({
 });
 
 
-
+export function setupStore(preloadedState = {}) {
+  return configureStore({
+    reducer: {
+      user: userSlice,
+    },
+    preloadedState,
+  });
+}
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
+export type AppStore = ReturnType<typeof setupStore>
