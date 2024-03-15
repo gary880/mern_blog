@@ -17,7 +17,6 @@
     },
     "types": [
       "node",
-      "jest",
       "vite/client",
       "@testing-library/jest-dom"
     ],
