@@ -114,7 +114,7 @@ const Profile = () => {
                 </animated.div>
             </div>
             <div>
-                <div className=" absolute bottom-0 p-4 left-1/2 -translate-x-1/2 bg-gray-200 w-full">
+                {/* <div className=" p-4 bg-gray-200 w-full">
                     <h2 className="text-2xl font-serif font-bold text-center">Contact Me</h2>
                     <div className="flex justify-center gap-4">
                         <a href="https://www.linkedin.com/in/dylan-chen-92366b1b0/" target="_blank">
@@ -125,7 +125,7 @@ const Profile = () => {
                         </a>
                     </div>
 
-                </div>
+                </div> */}
 
             </div>
 
