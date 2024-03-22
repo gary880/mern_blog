@@ -30,7 +30,7 @@
   height: 100%;
 
   display: flex;
-
+  margin-bottom: 12px;
   justify-content: center;
 }
 
